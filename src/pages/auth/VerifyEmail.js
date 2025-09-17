@@ -14,34 +14,34 @@ const VerifyEmail = () => {
 
   const token = searchParams.get('token');
 
-  const handleVerification = async () => {
-    try {
-      const result = await verifyEmail(token);
-      if (result.success) {
-        setStatus('success');
-        setMessage(result.message);
-        toast.success('Email verified successfully!');
-
-        // Redirect to dashboard after 3 seconds
-        setTimeout(() => {
-          navigate('/dashboard');
-        }, 3000);
-      }
-    } catch (error) {
-      setStatus('error');
-      setMessage(error.message);
-      toast.error(error.message);
-    }
-  };
-
   useEffect(() => {
+    const handleVerification = async () => {
+      try {
+        const result = await verifyEmail(token);
+        if (result.success) {
+          setStatus('success');
+          setMessage(result.message);
+          toast.success('Email verified successfully!');
+
+          // Redirect to dashboard after 3 seconds
+          setTimeout(() => {
+            navigate('/dashboard');
+          }, 3000);
+        }
+      } catch (error) {
+        setStatus('error');
+        setMessage(error.message);
+        toast.error(error.message);
+      }
+    };
+
     if (token) {
       handleVerification();
     } else {
       setStatus('error');
       setMessage('No verification token provided');
     }
-  }, [token, handleVerification]);
+  }, [token, verifyEmail, navigate]);
 
   const handleResendVerification = async () => {
     setIsResending(true);

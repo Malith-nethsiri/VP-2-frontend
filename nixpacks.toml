@@ -1,0 +1,11 @@
+[phases.build]
+nixPkgs = ["nodejs", "npm"]
+cmds = ["npm ci", "CI=false npm run build"]
+
+[phases.start]
+cmd = "npx serve -s build -p $PORT"
+
+[variables]
+CI = "false"
+GENERATE_SOURCEMAP = "false"
+SKIP_PREFLIGHT_CHECK = "true"
