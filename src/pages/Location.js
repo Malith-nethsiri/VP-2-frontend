@@ -122,6 +122,9 @@ const Location = () => {
       case 'map':
         handleGenerateMap(data);
         break;
+      default:
+        console.error('Unknown tab:', activeTab);
+        break;
     }
   };
 

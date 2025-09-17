@@ -16,8 +16,7 @@ const Register = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
-    watch
+    formState: { errors }
   } = useForm();
 
   // Redirect if already authenticated

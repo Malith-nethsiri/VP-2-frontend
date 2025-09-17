@@ -14,15 +14,6 @@ const VerifyEmail = () => {
 
   const token = searchParams.get('token');
 
-  useEffect(() => {
-    if (token) {
-      handleVerification();
-    } else {
-      setStatus('error');
-      setMessage('No verification token provided');
-    }
-  }, [token]);
-
   const handleVerification = async () => {
     try {
       const result = await verifyEmail(token);
@@ -42,6 +33,15 @@ const VerifyEmail = () => {
       toast.error(error.message);
     }
   };
+
+  useEffect(() => {
+    if (token) {
+      handleVerification();
+    } else {
+      setStatus('error');
+      setMessage('No verification token provided');
+    }
+  }, [token, handleVerification]);
 
   const handleResendVerification = async () => {
     setIsResending(true);
